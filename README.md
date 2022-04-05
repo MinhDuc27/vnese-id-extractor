@@ -32,29 +32,24 @@ cd vnese-id-extractor
 ### Step 3: Create conda environment and install requirements
 1. Create conda environment with cpu or gpu
 ```bash
-# Change directory to installation
-cd installation
 
 # for CPU
-conda env create -f conda-cpu.yml
+conda env create -f installation/conda-cpu.yml
 conda activate yolov4-cpu
 
 # for GPU
-conda env create -f conda-gpu.yml
+conda env create -f installation/conda-gpu.yml
 conda activate yolov4-gpu
 ```
 2. Install requirements
 ```bash
 # for CPU
-pip install -r requirements.txt
+pip install -r installation/requirements.txt
 
 # for GPU
-pip install -r requirements-gpu.txt
+pip install -r installation/requirements-gpu.txt
 ```
-3. Back to the base folder
-```bash
-cd ..
-```
+
 
 ### Step 4: Download and convert custom Yolo weights for id cards
 1. Download my pre-trained weights at: https://drive.google.com/drive/folders/1TwrMzlOS2HuOv628ZOQeqANTQRpUapwh?usp=sharing
@@ -68,9 +63,8 @@ __C.YOLO.BASE = os.getcwd().replace(os.sep, '/')
 ```bash
 cd yolov4_card_detection
 python save_model.py --weights ./data/yolov4-cards.weights --output ./checkpoints/custom-416 --input_size 416 --model yolov4
-cd .. 
 ```
-6. Ensure the conversion is successful by checking ./yolov4_card_detection/checkpoints folder
+6. Ensure the conversion is successful by checking yolov4_card_detection/checkpoints folder
 7. Undo step 4.4 (change line 15 back to)
 ```
 __C.YOLO.BASE = os.getcwd().replace(os.sep, '/') + "/yolov4_card_detection"
